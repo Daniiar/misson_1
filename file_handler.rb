@@ -1,5 +1,7 @@
 require 'json'
+require 'pry'
 # почему нужно реквайрить?
+# мемоизация больше меняется
 class FileHandler
   def self.read(file)
     string = ''
@@ -11,7 +13,7 @@ class FileHandler
     end
     
     new_hash = JSON.parse(string)
-    puts new_hash
+    # puts new_hash
   end
 
   def self.write(data)
@@ -19,10 +21,15 @@ class FileHandler
     file = File.new('output.json', 'w')
     file.syswrite(data)
   end
+
+  def self.memoizate(object)
+    @response ||= object
+  end
 end
 
 FileHandler .read("incoming_file.json")
 animal_names = {lion: 'John', cat: 'Pusik', dog: 'Tom'}
+binding.pry
 FileHandler.write(animal_names)
 
 # Написать класс, в котором есть следующие методы:
