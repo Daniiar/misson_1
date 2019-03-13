@@ -1,7 +1,6 @@
-require 'pry'
 require 'json'
-
-class Treatment
+# почему нужно реквайрить?
+class FileHandler
   def self.read(file)
     string = ''
     data = File.readlines(file)
@@ -22,9 +21,9 @@ class Treatment
   end
 end
 
-Treatment.read("incoming_file.json")
+FileHandler .read("incoming_file.json")
 animal_names = {lion: 'John', cat: 'Pusik', dog: 'Tom'}
-Treatment.write(animal_names)
+FileHandler.write(animal_names)
 
 # Написать класс, в котором есть следующие методы:
 # - Чтение из JSON файла, парсинг json. Возвращает объект ruby
@@ -32,8 +31,10 @@ Treatment.write(animal_names)
 
 # - Метод в котором присваивается значение переменной экземпляра @response используя мемоизацию
 # - Метод который вовзращает значение переменной экземпляра @response
+
 # - Метод который получает данные с удаленного адреса(Url должен быть прописан в константе), парсит JSON в ruby
 #   url = 'https://api.apis.guru/v2/metrics.json'
+
 # - Метод получает Hash, фильтрует по определенным ключам и передает на запись в файл. Должен содержать белый список ключей,
 #   по этому белому списку нужно отфильтровать пары ключ-значение из полученного в аргументах Hash
 # - Метод call:
