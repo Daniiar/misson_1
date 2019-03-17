@@ -1,7 +1,7 @@
 require 'json'
 require 'pry'
-# почему нужно реквайрить?
-# мемоизация больше меняется
+require 'net/http'
+
 class FileHandler
   def self.read(file)
     string = ''
@@ -25,15 +25,32 @@ class FileHandler
   def self.memoizate(object)
     @response ||= object
   end
+
+  def self.getData(url)
+    info = Net::HTTP.get(url)
+    JSON.parse(info)
+  end
+
+  def self.filterKeys(hash)
+    binding.pry
+    # white_list = {hash[":numSpecs"]}
+  end
+
 end
+
+Url = URI('https://api.apis.guru/v2/metrics.json')
 
 FileHandler .read("incoming_file.json")
 animal_names = {lion: 'John', cat: 'Pusik', dog: 'Tom'}
-binding.pry
+info = FileHandler.getData(Url)
+FileHandler.filterKeys(info)
+# binding.pry
 FileHandler.write(animal_names)
 
 # Написать класс, в котором есть следующие методы:
+
 # - Чтение из JSON файла, парсинг json. Возвращает объект ruby
+
 # - Запись в файл, принимает Hash, сериализирует полученные данные и записывает в локальный файл перезаписывая существующий файл и создав новый.
 
 # - Метод в котором присваивается значение переменной экземпляра @response используя мемоизацию
@@ -44,12 +61,13 @@ FileHandler.write(animal_names)
 
 # - Метод получает Hash, фильтрует по определенным ключам и передает на запись в файл. Должен содержать белый список ключей,
 #   по этому белому списку нужно отфильтровать пары ключ-значение из полученного в аргументах Hash
+
 # - Метод call:
 #   1 Вызвать метод, который получит json из удаленного сервера
 #   2 Вызов метода фильтрации
 #   3 Вызов метода записи в файл.
 #   4 Вызов метода записи в переменную @response
-#   5 Вывести на экран содержимое переменной @response, сравнить в содержимым файла.
+#   5 Вывести на экран содержимое переменной @response, сравнить c содержимым файла.
 
 # Все методы должны быть написаны как методы класса(self методы)
 
