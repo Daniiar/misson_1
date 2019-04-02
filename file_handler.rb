@@ -7,20 +7,19 @@ require './file_handler_module.rb'
 
 class FileHandler
   URL = URI('https://raw.githubusercontent.com/Daniiar/My-JSON-Server/master/10_users.json')
-  include FileHandlerModule
-  def call
+  extend FileHandlerModule
+  def self.call
     info = getData(URL)
     info = filterKeys(info)
     memoizate(info)
     write(info)
     puts "From url address...".light_yellow.on_magenta
-    print "#{@response}".light_yellow.on_blue
+    puts "#{@response}".light_yellow.on_blue
   end
 end
 
-calling = FileHandler.new
-calling.call
-calling.read('output.json')
+FileHandler.call
+FileHandler.read('output.json')
 
 # Написать класс, в котором есть следующие методы:
 # + Чтение из JSON файла, парсинг json. Возвращает объект ruby
@@ -42,15 +41,9 @@ calling.read('output.json')
 
 # Написать тесты
 
-# Вопрос: Отделил все методы в модуль и убрал "self.", кроме метода "self.call" который остался в классе,
-# пока не убрал с метода "self.call" слова "self" не сработало?
-# Вопрос почему вот так не работает?
-# calling = FileHandler.new.call
-# calling.read('output.json')
-# почему вот так работает require './file_handler_module.rb' а вот так нет require 'file_handler_module.rb'
-
 # Задача № 2
 
 # Создать другой класс который будет иметь все те же методы, но отпраляет запрос на нижеуказанный адрес,
 # в полученном json берет ссылку и по ссылке скачивает файл в определенную папку.
 # random_dog_url = 'https://dog.ceo/api/breeds/image/random'
+  

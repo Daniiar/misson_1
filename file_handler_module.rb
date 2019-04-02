@@ -20,7 +20,7 @@ module FileHandlerModule
   end
 
   def filterKeys(hash)
-    white_list = {
+    {
       "id": hash["id"],
       "name": hash["name"],
       "username": hash["username"],
