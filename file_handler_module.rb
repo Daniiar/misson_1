@@ -1,4 +1,9 @@
 module FileHandlerModule
+  def getData(url)
+    info = Net::HTTP.get(url)
+    JSON.parse(info)
+  end
+  
   def read(file)
     puts "\nFile reading...".light_yellow.on_magenta
     puts "#{File.readlines(file)}".light_yellow.on_blue
@@ -12,11 +17,6 @@ module FileHandlerModule
 
   def memoizate(object)
     @response ||= object
-  end
-
-  def getData(url)
-    info = Net::HTTP.get(url)
-    JSON.parse(info)
   end
 
   def filterKeys(hash)
