@@ -8,15 +8,14 @@ class GetImage < FileHandler
     info["message"]
   end
 
-  # info = getData(URL)
-  
+  def self.save_image
+    address = getUrlAddress(getData(URL))
+    Dir.mkdir 'images' unless Dir.exist?('images') 
+    Down.download(address, destination: 'images/.')
+  end
+
 end
 
-address = GetImage.getUrlAddress(GetImage.getData(GetImage::URL))
+GetImage.save_image
 
-
-
-Dir.mkdir 'images' unless Dir.exist?('images') 
-Down.download(address, destination: 'images/.')
-  # binding.pry
-  1+1
+# Вопрос почему self.getUrlAddress(info) не работает без self
