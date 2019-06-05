@@ -3,6 +3,7 @@ require 'pry'
 require 'net/http'
 require 'colorize'
 require 'colorized_string'
+require 'down'
 require './file_handler_module.rb'
 
 class FileHandler
