@@ -9,9 +9,13 @@ class GetImage < FileHandler
   end
 
   def self.save_image
+    FileUtils.rm_f Dir.glob("images/*")
     address = getUrlAddress(getData(URL))
-    Dir.mkdir 'images' unless Dir.exist?('images') 
-    Down.download(address, destination: 'images/.')
+    Dir.mkdir 'images' unless Dir.exist?('images')
+    image_as_string_code = Net::HTTP.get(URI(address))
+    dog_image = File.open('images/' + 'dog.jpeg', 'w+')
+    dog_image.write(image_as_string_code)
+    dog_image.close
   end
 
 end

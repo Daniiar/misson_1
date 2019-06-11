@@ -15,10 +15,10 @@ class GetImageTest < Minitest::Test
     assert_kind_of String, GetImage.getUrlAddress(hash_from_url)
   end
 
-  # def test_save_image
-  #   GetImage.save_image
-  #   file_names = Dir["images/*"]
-  #   binding.pry
-  # end
+  def test_save_image
+    GetImage.save_image
+    file_names = Dir["images/*"]
+    assert File.exist? file_names[0]
+  end
   
 end
