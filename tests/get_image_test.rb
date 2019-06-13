@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'pry'
-require_relative 'get_image'
+require_relative '../app/get_image'
 
 class GetImageTest < Minitest::Test
 

@@ -1,4 +1,4 @@
-load 'file_handler.rb'
+require './app/file_handler.rb'
 
 class GetImage < FileHandler
   

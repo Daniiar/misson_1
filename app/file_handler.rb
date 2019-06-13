@@ -4,7 +4,7 @@ require 'net/http'
 require 'colorize'
 require 'colorized_string'
 require 'down'
-require './file_handler_module.rb'
+require './app/file_handler_module.rb'
 
 class FileHandler
   URL = URI('https://raw.githubusercontent.com/Daniiar/My-JSON-Server/master/10_users.json')

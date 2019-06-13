@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'pry'
-require_relative 'file_handler'
+require_relative '../app/file_handler'
 
 class FileHandlerTest < Minitest::Test
   def test_checking_url_address
